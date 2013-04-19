@@ -565,30 +565,22 @@
     return NSZeroRect;
 }
 
-#pragma mark Faked Properties
+#pragma mark Zoom / Scroll Settings
 
-- (BOOL)isScrollEnabled
+
+- (void)setScrollEnabled:(BOOL)enabled
 {
-    return YES;
+    scrollEnabled = enabled;
+    WebScriptObject *webScriptObject = [webView windowScriptObject];
+    [webScriptObject callWebScriptMethod:@"enableDragging" withArguments:@[@(enabled)]];
 }
 
-- (void)setScrollEnabled:(BOOL)scrollEnabled
+- (void)setZoomEnabled:(BOOL)enabled
 {
-    if (!scrollEnabled)
-        NSLog(@"setting scrollEnabled to NO on MKMapView not supported.");
+    zoomEnabled = enabled;
+    WebScriptObject *webScriptObject = [webView windowScriptObject];
+    [webScriptObject callWebScriptMethod:@"enableZooming" withArguments:@[@(enabled)]];
 }
-
-- (BOOL)isZoomEnabled
-{
-    return YES;
-}
-
-- (void)setZoomEnabled:(BOOL)zoomEnabled
-{
-    if (!zoomEnabled)
-        NSLog(@"setting zoomEnabled to NO on MKMapView not supported");
-}
-
 
 
 #pragma mark CoreLocationManagerDelegate
@@ -654,6 +646,8 @@
     {
         // In case we have to resume state from NSCoding
         [self setMapType:[self mapType]];
+        [self setScrollEnabled:self.scrollEnabled];
+        [self setZoomEnabled:self.zoomEnabled];
         [self setShowsUserLocation:[self showsUserLocation]];
         
 	[self performSelector:@selector(delegateDidFinishLoadingMap) withObject:nil afterDelay:0.5];

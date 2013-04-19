@@ -303,18 +303,20 @@
     {
         [self deselectAnnotation:annotation animated:YES];
     }
+    
+    NSDictionary *latlong = [jsonEncodedLatLng JSONValue];
+    NSNumber *latitude = [latlong objectForKey:@"latitude"];
+    NSNumber *longitude = [latlong objectForKey:@"longitude"];
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = [latitude doubleValue];
+    coordinate.longitude = [longitude doubleValue];
+    [self delegateUserDidClickAtCoordinate:coordinate];
 
     // Give the delegate the opportunity to do something
     // if the clicked and held for more than 0.5 secs.
     NSTimeInterval timeSinceMouseDown = [[NSDate date] timeIntervalSinceDate:[webView lastHitTestDate]];
     if (timeSinceMouseDown > 0.5)
     {
-        NSDictionary *latlong = [jsonEncodedLatLng JSONValue];
-        NSNumber *latitude = [latlong objectForKey:@"latitude"];
-        NSNumber *longitude = [latlong objectForKey:@"longitude"];
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = [latitude doubleValue];
-        coordinate.longitude = [longitude doubleValue];
         [self delegateUserDidClickAndHoldAtCoordinate:coordinate];
     }
 }

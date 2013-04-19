@@ -22,6 +22,7 @@
 @interface MKMapView : NSView <CLLocationManagerDelegate, NSCoding> {    
     id <MKMapViewDelegate> delegate;
     MKMapType mapType;
+    BOOL scrollEnabled, zoomEnabled;
     MKUserLocation *userLocation;
     BOOL showsUserLocation;
     NSMutableArray *overlays;
@@ -48,8 +49,8 @@
 @property(nonatomic) MKCoordinateRegion region;
 @property(nonatomic) CLLocationCoordinate2D centerCoordinate;
 @property(nonatomic) BOOL showsUserLocation;
-@property(nonatomic, getter=isScrollEnabled) BOOL scrollEnabled;
-@property(nonatomic, getter=isZoomEnabled) BOOL zoomEnabled;
+@property(nonatomic) BOOL scrollEnabled;
+@property(nonatomic) BOOL zoomEnabled;
 @property(nonatomic, readonly, getter=isUserLocationVisible) BOOL userLocationVisible;
 @property(nonatomic, readonly) NSArray *overlays;
 @property(nonatomic, readonly) NSArray *annotations;
@@ -127,6 +128,7 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState;
 
 // MacMapKit additions
+- (void)mapView:(MKMapView *)mapView userDidClickAtCoordinate:(CLLocationCoordinate2D)coordinate;
 - (void)mapView:(MKMapView *)mapView userDidClickAndHoldAtCoordinate:(CLLocationCoordinate2D)coordinate;
 - (NSArray *)mapView:(MKMapView *)mapView contextMenuItemsForAnnotationView:(MKAnnotationView *)view;
 

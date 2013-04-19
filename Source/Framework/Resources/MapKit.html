@@ -812,6 +812,21 @@ window.onwebkitanimationend =  function(event) {
           });
     return MKReverseGeocoder;
   }
+    
+  // Drag / Zoom Settings
+  function enableDragging(enable)
+  {
+      map.setOptions({draggable: enable});
+  }
+    
+  function enableZooming(enable)
+  {
+      map.setOptions({
+                        disableDoubleClickZoom: !enable,
+                        scrollwheel: enable,
+                        zoomControl: enable
+                     });
+  }
   
   // Geocoding
   
@@ -866,8 +881,10 @@ window.onwebkitanimationend =  function(event) {
         var myOptions = {
           zoom: 13,
           center: latlng,
-          disableDefaultUI: true,
+          disableDefaultUI: false,
+          streetViewControl: false,
           navigationControl: false,
+          mapTypeControl:false,
           scrollwheel: false,
           navigationControlOptions: {
               style: google.maps.NavigationControlStyle.SMALL,
@@ -912,7 +929,6 @@ window.onwebkitanimationend =  function(event) {
         mapView.innerHTML = "<div class='mapKitLoadError'><div class='mapKitLoadErrorCenter'><div class='mapKitLoadErrorMessage'>Error Loading MapView, an internet connection is required. <br/><button onclick='window.MKMapView.webviewReportingReloadGmaps()'>Retry</button></div></div></div>";
     }
     
-
     
 
     //setUserLocationRadius(222);
@@ -971,17 +987,6 @@ window.onwebkitanimationend =  function(event) {
     <div id="map_canvas" style="top:0px; left:0px; width:100%; height:100%">
         Loading MapKit...
     <button>test</button>
-    </div>
-    <div class="zoomControls">
-        <div class="zoom" onClick="map.setZoom(map.getZoom()+1);">
-    		<div class="in"></div>
-    		<div class="out"></div>
-    		<div class="in2"></div>
-    	</div>
-
-    	<div class="zoom" onClick="map.setZoom(map.getZoom()-1);">
-    		<div class="out"></div>
-    	</div>
     </div>
 
 </body>

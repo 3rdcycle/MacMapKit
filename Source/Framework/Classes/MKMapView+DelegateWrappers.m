@@ -126,13 +126,20 @@
 }
 
 // MacMapKit additions
+- (void)delegateUserDidClickAtCoordinate:(CLLocationCoordinate2D)coordinate;
+{
+    if (delegate && [delegate respondsToSelector:@selector(mapView:userDidClickAtCoordinate:)])
+    {
+        [delegate mapView:self userDidClickAtCoordinate:coordinate];
+    }
+}
+
 - (void)delegateUserDidClickAndHoldAtCoordinate:(CLLocationCoordinate2D)coordinate;
 {
     if (delegate && [delegate respondsToSelector:@selector(mapView:userDidClickAndHoldAtCoordinate:)])
     {
         [delegate mapView:self userDidClickAndHoldAtCoordinate:coordinate];
     }
-
 }
 
 - (NSArray *)delegateContextMenuItemsForAnnotationView:(MKAnnotationView *)view

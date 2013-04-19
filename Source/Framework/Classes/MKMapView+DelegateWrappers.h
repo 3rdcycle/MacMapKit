@@ -40,6 +40,7 @@
 - (void)delegateDidAddOverlayViews:(NSArray *)overlayViews;
 
 // MacMapKit additions
+- (void)delegateUserDidClickAtCoordinate:(CLLocationCoordinate2D)coordinate;
 - (void)delegateUserDidClickAndHoldAtCoordinate:(CLLocationCoordinate2D)coordinate;
 - (NSArray *)delegateContextMenuItemsForAnnotationView:(MKAnnotationView *)view;
 
