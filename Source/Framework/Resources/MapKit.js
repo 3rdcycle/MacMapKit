@@ -975,6 +975,22 @@
         }
     });
 
+    // Drag / Zoom Settings
+    function enableDragging(enable)
+    {
+        map.setOptions({draggable: enable});
+    }
+    
+    function enableZooming(enable)
+    {
+        map.setOptions({
+                        disableDoubleClickZoom: !enable,
+                        scrollwheel: enable,
+                        zoomControl: enable
+                       });
+    }
+
+
     //
     // Initialize
     //
@@ -991,7 +1007,9 @@
             myOptions = {
                 zoom: 13,
                 center: latlng,
-                disableDefaultUI: true,
+                disableDefaultUI: false,
+                streetViewControl: false,
+                mapTypeControl: false,
                 navigationControl: false,
                 scrollwheel: false,
                 navigationControlOptions: {
