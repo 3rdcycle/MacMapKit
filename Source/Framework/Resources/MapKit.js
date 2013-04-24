@@ -978,16 +978,16 @@
     // Drag / Zoom Settings
     function enableDragging(enable)
     {
-        map.setOptions({draggable: enable});
+        w.map.setOptions({draggable: enable});
     }
     
     function enableZooming(enable)
     {
-        map.setOptions({
-                        disableDoubleClickZoom: !enable,
-                        scrollwheel: enable,
-                        zoomControl: enable
-                       });
+        w.map.setOptions({
+                         disableDoubleClickZoom: !enable,
+                         scrollwheel: enable,
+                         zoomControl: enable
+                         });
     }
 
 
@@ -1009,9 +1009,10 @@
                 center: latlng,
                 disableDefaultUI: false,
                 streetViewControl: false,
-                mapTypeControl: false,
+                mapTypeControl: true,
                 navigationControl: false,
-                scrollwheel: false,
+                scrollwheel: true,
+                zoomControl: true,
                 navigationControlOptions: {
                     style: g.maps.NavigationControlStyle.SMALL,
                     position: g.maps.ControlPosition.TOP_LEFT

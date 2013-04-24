@@ -30,7 +30,7 @@
 
 @implementation MKMapView
 
-@synthesize delegate, mapType, userLocation, showsUserLocation;
+@synthesize delegate, mapType, userLocation, showsUserLocation, zoomEnabled, scrollEnabled;
 
 - (void)customInit
 {
@@ -662,21 +662,29 @@
     return NSZeroRect;
 }
 
-#pragma mark Zoom / Scroll Settings
-
 
 - (void)setScrollEnabled:(BOOL)enabled
 {
+    // TODO: Implement
+    NSLog(@"-[MKMapView setScrollEnabled:] not implemented yet");
+    
+    /* this doesn't seem to work reliably
     scrollEnabled = enabled;
     WebScriptObject *webScriptObject = [webView windowScriptObject];
     [webScriptObject callWebScriptMethod:@"enableDragging" withArguments:@[@(enabled)]];
+     */
 }
 
 - (void)setZoomEnabled:(BOOL)enabled
 {
+    // TODO: Implement
+    NSLog(@"-[MKMapView setZoomEnabled:] not implemented yet");
+    
+    /* this doesn't seem to work reliably
     zoomEnabled = enabled;
     WebScriptObject *webScriptObject = [webView windowScriptObject];
     [webScriptObject callWebScriptMethod:@"enableZooming" withArguments:@[@(enabled)]];
+     */
 }
 
 
